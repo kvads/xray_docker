@@ -31,7 +31,7 @@
                 "network": "xhttp",
                 "security": "tls",
                 "xhttpSettings": {
-                    "host": ["${DOMAIN}"],
+                    "host": "${DOMAIN}",
                     "path": "/xhttp"
                 },
                 "tlsSettings": {
@@ -50,7 +50,7 @@
                 "network": "xhttp",
                 "security": "tls",
                 "xhttpSettings": {
-                    "host": ["${DOMAIN}"],
+                    "host": "${DOMAIN}",
                     "path": "/xhttp/stream"
                 },
                 "tlsSettings": {
