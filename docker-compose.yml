@@ -69,7 +69,8 @@ services:
     environment:
       - VIRTUAL_HOST=${ADMIN_DOMAIN}
       - LETSENCRYPT_HOST=${ADMIN_DOMAIN}
-      - PORT=${ADMIN_PANEL_PORT}
+      - VIRTUAL_PORT=3000
+      - PORT=3000
     networks:
       - proxy-network
       - xray-network
