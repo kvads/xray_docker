@@ -28,9 +28,9 @@
                 "decryption": "none"
             },
             "streamSettings": {
-                "network": "http",
+                "network": "xhttp",
                 "security": "tls",
-                "httpSettings": {
+                "xhttpSettings": {
                     "host": ["${DOMAIN}"],
                     "path": "/xhttp"
                 },
@@ -47,9 +47,9 @@
                 "decryption": "none"
             },
             "streamSettings": {
-                "network": "http",
+                "network": "xhttp",
                 "security": "tls",
-                "httpSettings": {
+                "xhttpSettings": {
                     "host": ["${DOMAIN}"],
                     "path": "/xhttp/stream"
                 },
