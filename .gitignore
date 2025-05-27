@@ -1,0 +1,38 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Docker volumes and data
+xray/data/
+nginx-proxy/ssl/
+nginx-proxy/conf.d/
+
+# Node.js
+admin-panel/node_modules/
+admin-panel/npm-debug.log
+admin-panel/data/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Temporary files
+*.tmp
+*.temp 

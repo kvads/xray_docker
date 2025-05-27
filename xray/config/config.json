@@ -1,0 +1,84 @@
+{
+    "log": {
+        "loglevel": "warning",
+        "access": "/var/lib/xray/access.log",
+        "error": "/var/lib/xray/error.log"
+    },
+    "inbounds": [
+        {
+            "port": 8443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"],
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/xray/cert.pem",
+                            "keyFile": "/etc/xray/key.pem"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "port": 8080,
+            "protocol": "vless",
+            "settings": {
+                "clients": [],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"],
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/xray/cert.pem",
+                            "keyFile": "/etc/xray/key.pem"
+                        }
+                    ]
+                },
+                "wsSettings": {
+                    "path": "/ws"
+                }
+            }
+        },
+        {
+            "port": 2087,
+            "protocol": "vless",
+            "settings": {
+                "clients": [],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"],
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/xray/cert.pem",
+                            "keyFile": "/etc/xray/key.pem"
+                        }
+                    ]
+                },
+                "grpcSettings": {
+                    "serviceName": "grpc"
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ]
+} 
