@@ -25,54 +25,8 @@
                         "raw.githubusercontent.com",
                         "gist.github.com"
                     ],
-                    "privateKey": "YOUR_PRIVATE_KEY",
-                    "shortIds": ["YOUR_SHORT_ID"]
-                }
-            }
-        },
-        {
-            "port": 8080,
-            "protocol": "vless",
-            "settings": {
-                "clients": [],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "xhttp",
-                "security": "tls",
-                "xhttpSettings": {
-                    "host": "${DOMAIN}",
-                    "path": "/xhttp",
-                    "method": "POST",
-                    "headers": {
-                        "Content-Type": ["application/octet-stream", "application/x-www-form-urlencoded"]
-                    }
-                },
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"]
-                }
-            }
-        },
-        {
-            "port": 2087,
-            "protocol": "vless",
-            "settings": {
-                "clients": [],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "xhttp",
-                "security": "tls",
-                "xhttpSettings": {
-                    "host": "${DOMAIN}",
-                    "path": "/xhttp/stream",
-                    "method": "POST",
-                    "headers": {
-                        "Content-Type": ["application/octet-stream", "application/x-www-form-urlencoded"]
-                    }
-                },
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"]
+                    "privateKey": "oObCw8HnrC-_3E-mn0wAQQvSZ6pgEJXQx4SbOfiHQ1o",
+                    "shortIds": ["d8763860f855e110"]
                 }
             }
         }
