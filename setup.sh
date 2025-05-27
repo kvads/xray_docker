@@ -86,6 +86,9 @@ create_directories() {
 start_services() {
     log "Starting services..."
     
+    # Устанавливаем права на выполнение для check-env.sh
+    chmod +x check-env.sh
+    
     # Проверяем переменные окружения
     ./check-env.sh || error "Environment check failed"
     

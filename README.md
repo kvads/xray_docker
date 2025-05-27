@@ -16,11 +16,34 @@
 ## Требования
 
 - Docker и Docker Compose
-- Домен или поддомен, указывающий на ваш сервер
-- Доступ к серверу по SSH
+- Домен, указывающий на ваш сервер
+- Открытые порты: 8081, 8444, 8443, 8080, 2087, 3000
+
+## Быстрый старт
+
+1. Клонируйте репозиторий:
+```bash
+git clone <repository-url>
+cd xray-docker
+```
+
+2. Запустите скрипт установки:
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Скрипт попросит ввести:
+- Домен (например, example.com)
+- Email для Let's Encrypt
+- Порты для различных протоколов (можно оставить по умолчанию)
+
+3. После успешной установки, админ-панель будет доступна по адресу:
+```
+https://admin.your-domain.com:8444
+```
 
 ## Используемые порты
-
 - 8081:80 - HTTP (внутренний порт nginx)
 - 8444:443 - HTTPS (внутренний порт nginx)
 - 8443 - VLESS + XTLS
@@ -28,76 +51,57 @@
 - 2087 - gRPC
 - 3000 - Admin Panel
 
-## Установка
+## Проверка статуса
+```bash
+# Проверка логов
+docker-compose logs -f
 
-1. **Подготовка сервера:**
-   ```bash
-   # Обновление системы
-   sudo apt update && sudo apt upgrade -y
-   
-   # Установка Docker
-   curl -fsSL https://get.docker.com -o get-docker.sh
-   sudo sh get-docker.sh
-   
-   # Установка Docker Compose
-   sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-   sudo chmod +x /usr/local/bin/docker-compose
-   ```
+# Проверка статуса контейнеров
+docker-compose ps
+```
 
-2. **Клонирование репозитория:**
-   ```bash
-   git clone <repository-url>
-   cd xray-docker
-   ```
+## Устранение неполадок
 
-3. **Запуск установки:**
-   ```bash
-   # Делаем скрипт установки исполняемым
-   chmod +x setup.sh
-   
-   # Запускаем установку
-   ./setup.sh
-   ```
+### Проверка занятых портов
+```bash
+sudo lsof -i :443
+sudo lsof -i :80
+```
 
-   Скрипт попросит ввести:
-   - Домен (например, example.com)
-   - Email для Let's Encrypt
-   - Порты для различных протоколов (можно оставить по умолчанию)
+### Проверка SSL сертификатов
+```bash
+ls -la nginx-proxy/ssl/${DOMAIN}/
+```
 
-4. **Проверка установки:**
-   ```bash
-   # Проверка статуса контейнеров
-   docker-compose ps
-   
-   # Просмотр логов
-   docker-compose logs -f
-   ```
+### Проверка логов
+```bash
+# Логи nginx-proxy
+docker-compose logs nginx-proxy
 
-## Использование
+# Логи letsencrypt-companion
+docker-compose logs letsencrypt-companion
 
-### Панель управления
+# Логи xray
+docker-compose logs xray
 
-1. Доступ к панели управления: `https://admin.your-domain.com:8444`
-2. API endpoints:
-   - `POST /api/users` - Добавить нового пользователя
-   - `GET /api/users` - Список всех пользователей
-   - `DELETE /api/users/:id` - Удалить пользователя
+# Логи admin-panel
+docker-compose logs admin-panel
+```
 
-### Конфигурация клиентов
-
-Система поддерживает несколько протоколов:
-
-1. **VLESS + XTLS Vision** (Порт 8443)
-   - Самый быстрый и современный протокол
-   - Рекомендуется для большинства случаев
-
-2. **WebSocket + TLS** (Порт 8080)
-   - Хорошо работает через прокси
-   - Подходит для обхода блокировок
-
-3. **gRPC** (Порт 2087)
-   - Эффективный транспорт
-   - Подходит для streaming данных
+## Структура проекта
+```
+.
+├── admin-panel/
+│   └── data/           # База данных админ-панели
+├── nginx-proxy/
+│   └── ssl/           # SSL сертификаты
+├── xray/
+│   ├── config/        # Конфигурация Xray
+│   └── logs/          # Логи Xray
+├── .env               # Переменные окружения
+├── docker-compose.yml # Конфигурация Docker Compose
+└── setup.sh           # Скрипт установки
+```
 
 ## Обновление
 
@@ -124,39 +128,6 @@ tar -czf xray-backup-$(date +%Y%m%d).tar.gz \
 # Восстановление из бэкапа
 tar -xzf xray-backup-YYYYMMDD.tar.gz
 ```
-
-## Устранение неполадок
-
-1. **Проверка логов:**
-   ```bash
-   # Все сервисы
-   docker-compose logs -f
-   
-   # Конкретный сервис
-   docker-compose logs -f xray
-   docker-compose logs -f nginx-proxy
-   ```
-
-2. **Проверка SSL-сертификатов:**
-   ```bash
-   docker-compose exec letsencrypt-companion ls -la /etc/nginx/ssl
-   ```
-
-3. **Проверка конфигурации Xray:**
-   ```bash
-   docker-compose exec xray cat /etc/xray/config.json
-   ```
-
-4. **Перезапуск сервисов:**
-   ```bash
-   docker-compose restart
-   ```
-
-5. **Проверка занятых портов:**
-   ```bash
-   sudo lsof -i :443
-   sudo lsof -i :80
-   ```
 
 ## Безопасность
 

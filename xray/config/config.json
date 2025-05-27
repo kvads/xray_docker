@@ -19,8 +19,8 @@
                     "alpn": ["h2", "http/1.1"],
                     "certificates": [
                         {
-                            "certificateFile": "/etc/xray/cert.pem",
-                            "keyFile": "/etc/xray/key.pem"
+                            "certificateFile": "/etc/nginx/ssl/${DOMAIN}/fullchain.pem",
+                            "keyFile": "/etc/nginx/ssl/${DOMAIN}/privkey.pem"
                         }
                     ]
                 }
@@ -40,8 +40,8 @@
                     "alpn": ["h2", "http/1.1"],
                     "certificates": [
                         {
-                            "certificateFile": "/etc/xray/cert.pem",
-                            "keyFile": "/etc/xray/key.pem"
+                            "certificateFile": "/etc/nginx/ssl/${DOMAIN}/fullchain.pem",
+                            "keyFile": "/etc/nginx/ssl/${DOMAIN}/privkey.pem"
                         }
                     ]
                 },
@@ -64,8 +64,8 @@
                     "alpn": ["h2", "http/1.1"],
                     "certificates": [
                         {
-                            "certificateFile": "/etc/xray/cert.pem",
-                            "keyFile": "/etc/xray/key.pem"
+                            "certificateFile": "/etc/nginx/ssl/${DOMAIN}/fullchain.pem",
+                            "keyFile": "/etc/nginx/ssl/${DOMAIN}/privkey.pem"
                         }
                     ]
                 },
