@@ -4,7 +4,7 @@ services:
     container_name: xray
     restart: unless-stopped
     ports:
-      - "${XRAY_VLESS_PORT}:${XRAY_VLESS_PORT}"  # VLESS + XTLS
+      - "443:443"  # Reality напрямую
       - "${XRAY_WS_PORT}:${XRAY_WS_PORT}"  # WebSocket
       - "${XRAY_GRPC_PORT}:${XRAY_GRPC_PORT}"  # gRPC
     volumes:
@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"    # HTTP
-      - "443:443"  # HTTPS
+      - "8443:443"  # HTTPS для админ-панели
     volumes:
       - ./nginx-proxy/conf.d:/etc/nginx/conf.d
       - ./nginx-proxy/certs:/etc/nginx/certs:rw
