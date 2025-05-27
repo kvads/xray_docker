@@ -14,16 +14,7 @@
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "tls",
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"],
-                    "certificates": [
-                        {
-                            "certificateFile": "/etc/nginx/certs/${DOMAIN}/fullchain.pem",
-                            "keyFile": "/etc/nginx/certs/${DOMAIN}/privkey.pem"
-                        }
-                    ]
-                }
+                "security": "none"
             }
         },
         {
@@ -35,16 +26,7 @@
             },
             "streamSettings": {
                 "network": "ws",
-                "security": "tls",
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"],
-                    "certificates": [
-                        {
-                            "certificateFile": "/etc/nginx/certs/${DOMAIN}/fullchain.pem",
-                            "keyFile": "/etc/nginx/certs/${DOMAIN}/privkey.pem"
-                        }
-                    ]
-                },
+                "security": "none",
                 "wsSettings": {
                     "path": "/ws"
                 }
@@ -59,16 +41,7 @@
             },
             "streamSettings": {
                 "network": "grpc",
-                "security": "tls",
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"],
-                    "certificates": [
-                        {
-                            "certificateFile": "/etc/nginx/certs/${DOMAIN}/fullchain.pem",
-                            "keyFile": "/etc/nginx/certs/${DOMAIN}/privkey.pem"
-                        }
-                    ]
-                },
+                "security": "none",
                 "grpcSettings": {
                     "serviceName": "grpc"
                 }

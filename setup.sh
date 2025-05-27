@@ -79,7 +79,8 @@ EOF
 # Создание необходимых директорий
 create_directories() {
     log "Creating necessary directories..."
-    mkdir -p xray/{config,data} nginx-proxy/{conf.d,ssl} admin-panel
+    mkdir -p xray/{config,data} nginx-proxy/{conf.d,certs,vhost.d,html} admin-panel/data
+    chmod -R 755 nginx-proxy/certs
 }
 
 # Проверка и запуск сервисов
