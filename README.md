@@ -17,8 +17,16 @@
 
 - Docker и Docker Compose
 - Домен или поддомен, указывающий на ваш сервер
-- Открытые порты 80 и 443 на сервере
 - Доступ к серверу по SSH
+
+## Используемые порты
+
+- 8081:80 - HTTP (внутренний порт nginx)
+- 8444:443 - HTTPS (внутренний порт nginx)
+- 8443 - VLESS + XTLS
+- 8080 - WebSocket
+- 2087 - gRPC
+- 3000 - Admin Panel
 
 ## Установка
 
@@ -69,7 +77,7 @@
 
 ### Панель управления
 
-1. Доступ к панели управления: `https://admin.your-domain.com`
+1. Доступ к панели управления: `https://admin.your-domain.com:8444`
 2. API endpoints:
    - `POST /api/users` - Добавить нового пользователя
    - `GET /api/users` - Список всех пользователей
@@ -142,6 +150,12 @@ tar -xzf xray-backup-YYYYMMDD.tar.gz
 4. **Перезапуск сервисов:**
    ```bash
    docker-compose restart
+   ```
+
+5. **Проверка занятых портов:**
+   ```bash
+   sudo lsof -i :443
+   sudo lsof -i :80
    ```
 
 ## Безопасность
