@@ -9,7 +9,12 @@
             "port": 443,
             "protocol": "vless",
             "settings": {
-                "clients": [],
+                "clients": [
+                    {
+                        "id": "096aed90-9d88-4305-b183-5fbef76af731",
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
                 "decryption": "none"
             },
             "streamSettings": {
