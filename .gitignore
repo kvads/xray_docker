@@ -7,6 +7,8 @@
 xray/data/
 nginx-proxy/ssl/
 nginx-proxy/conf.d/
+nginx-proxy/certs/
+nginx-proxy/vhost.d/
 
 # Node.js
 admin-panel/node_modules/
@@ -35,4 +37,41 @@ Thumbs.db
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# Executable scripts
+*.sh
+!check-env.sh
+!setup.sh
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.srl
+*.p12
+*.pfx
+*.der
+*.cer
+*.crt
+*.p7b
+*.p7c
+*.p7s
+*.p8
+*.p8e
+*.pem
+*.key
+*.crt
+*.csr
+*.srl
+*.p12
+*.pfx
+*.der
+*.cer
+*.crt
+*.p7b
+*.p7c
+*.p7s
+*.p8
+*.p8e 
