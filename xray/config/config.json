@@ -6,7 +6,7 @@
     },
     "inbounds": [
         {
-            "port": 8443,
+            "port": 443,
             "protocol": "vless",
             "settings": {
                 "clients": [],
@@ -14,9 +14,19 @@
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "tls",
-                "tlsSettings": {
-                    "alpn": ["h2", "http/1.1"]
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "xver": 0,
+                    "dest": "github.com:443",
+                    "serverNames": [
+                        "github.com",
+                        "www.github.com",
+                        "raw.githubusercontent.com",
+                        "gist.github.com"
+                    ],
+                    "privateKey": "YOUR_PRIVATE_KEY",
+                    "shortIds": ["YOUR_SHORT_ID"]
                 }
             }
         },
