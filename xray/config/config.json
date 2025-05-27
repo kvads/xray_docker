@@ -14,7 +14,10 @@
             },
             "streamSettings": {
                 "network": "tcp",
-                "security": "none"
+                "security": "tls",
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"]
+                }
             }
         },
         {
@@ -25,10 +28,14 @@
                 "decryption": "none"
             },
             "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "/ws"
+                "network": "http",
+                "security": "tls",
+                "httpSettings": {
+                    "host": ["${DOMAIN}"],
+                    "path": "/xhttp"
+                },
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"]
                 }
             }
         },
@@ -40,10 +47,14 @@
                 "decryption": "none"
             },
             "streamSettings": {
-                "network": "grpc",
-                "security": "none",
-                "grpcSettings": {
-                    "serviceName": "grpc"
+                "network": "http",
+                "security": "tls",
+                "httpSettings": {
+                    "host": ["${DOMAIN}"],
+                    "path": "/xhttp/stream"
+                },
+                "tlsSettings": {
+                    "alpn": ["h2", "http/1.1"]
                 }
             }
         }
