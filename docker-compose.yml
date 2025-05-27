@@ -12,7 +12,7 @@ services:
     volumes:
       - ./xray/config:/etc/xray
       - ./xray/data:/var/lib/xray
-      - ./nginx-proxy/ssl:/etc/nginx/ssl:ro  # Добавляем доступ к SSL сертификатам
+      - ./nginx-proxy/certs:/etc/nginx/certs:ro  # Изменен путь к сертификатам
     environment:
       - VIRTUAL_HOST=${DOMAIN}
       - LETSENCRYPT_HOST=${DOMAIN}
@@ -32,7 +32,7 @@ services:
       - "8444:443"   # HTTPS
     volumes:
       - ./nginx-proxy/conf.d:/etc/nginx/conf.d
-      - ./nginx-proxy/ssl:/etc/nginx/ssl
+      - ./nginx-proxy/certs:/etc/nginx/certs:rw  # Изменен путь к сертификатам
       - ./nginx-proxy/vhost.d:/etc/nginx/vhost.d
       - ./nginx-proxy/html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -46,7 +46,7 @@ services:
     container_name: letsencrypt-companion
     restart: unless-stopped
     volumes:
-      - ./nginx-proxy/ssl:/etc/nginx/ssl
+      - ./nginx-proxy/certs:/etc/nginx/certs:rw  # Изменен путь к сертификатам
       - ./nginx-proxy/vhost.d:/etc/nginx/vhost.d
       - ./nginx-proxy/html:/usr/share/nginx/html
       - ./nginx-proxy/conf.d:/etc/nginx/conf.d
@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./admin-panel:/app
-      - ./admin-panel/data:/app/data  # Добавляем том для базы данных
+      - ./admin-panel/data:/app/data
     working_dir: /app
     command: sh -c "mkdir -p /app/data && npm install && npm start"
     environment:
