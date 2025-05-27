@@ -14,6 +14,7 @@ services:
     environment:
       - VIRTUAL_HOST=${DOMAIN}
       - LETSENCRYPT_HOST=${DOMAIN}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
     networks:
       - proxy-network
       - xray-network
@@ -69,6 +70,7 @@ services:
     environment:
       - VIRTUAL_HOST=${ADMIN_DOMAIN}
       - LETSENCRYPT_HOST=${ADMIN_DOMAIN}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - VIRTUAL_PORT=3000
       - PORT=3000
     networks:
