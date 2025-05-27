@@ -26,7 +26,7 @@ check_docker() {
     if ! command -v docker &> /dev/null; then
         error "Docker is not installed. Please install Docker first."
     fi
-    if ! command -v docker-compose &> /dev/null; then
+    if ! docker compose version &> /dev/null; then
         error "Docker Compose is not installed. Please install Docker Compose first."
     fi
 }
@@ -94,10 +94,10 @@ start_services() {
     ./check-env.sh || error "Environment check failed"
     
     # Запускаем сервисы
-    docker-compose up -d || error "Failed to start services"
+    docker compose up -d || error "Failed to start services"
     
     # Проверяем статус
-    if docker-compose ps | grep -q "Up"; then
+    if docker compose ps | grep -q "Up"; then
         log "Services started successfully"
     else
         error "Some services failed to start"
@@ -122,7 +122,7 @@ main() {
     
     log "Installation completed successfully!"
     log "You can access the admin panel at: https://admin.${domain}"
-    log "Check the logs with: docker-compose logs -f"
+    log "Check the logs with: docker compose logs -f"
 }
 
 # Запускаем основной процесс

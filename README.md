@@ -54,10 +54,10 @@ https://admin.your-domain.com
 ## Проверка статуса
 ```bash
 # Проверка логов
-docker-compose logs -f
+docker compose logs -f
 
 # Проверка статуса контейнеров
-docker-compose ps
+docker compose ps
 ```
 
 ## Устранение неполадок
@@ -76,16 +76,16 @@ ls -la nginx-proxy/certs/${DOMAIN}/
 ### Проверка логов
 ```bash
 # Логи nginx-proxy
-docker-compose logs nginx-proxy
+docker compose logs nginx-proxy
 
 # Логи letsencrypt-companion
-docker-compose logs letsencrypt-companion
+docker compose logs letsencrypt-companion
 
 # Логи xray
-docker-compose logs xray
+docker compose logs xray
 
 # Логи admin-panel
-docker-compose logs admin-panel
+docker compose logs admin-panel
 ```
 
 ## Структура проекта
@@ -109,13 +109,13 @@ docker-compose logs admin-panel
 
 ```bash
 # Остановка сервисов
-docker-compose down
+docker compose down
 
 # Получение обновлений
 git pull
 
 # Перезапуск с новыми настройками
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Резервное копирование
